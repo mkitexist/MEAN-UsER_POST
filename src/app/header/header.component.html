@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" style="background-color: #191a1b;border-bottom: 1px solid #00060c;">
+    <span> <a mat-button [routerLink]="['/']" routerLinkActive="colorLink" [routerLinkActiveOptions]={exact:true}>
+            Posts</a></span>
+    <span class="spacer"></span>
+    <span *ngIf="userAutnenticated">
+        <a mat-button [routerLink]="['/create']" routerLinkActive="colorLink">
+            add post
+        </a>
+    </span>
+    <span *ngIf="!userAutnenticated">
+        <a mat-button [routerLink]="['auth/login']" routerLinkActive="colorLink">
+            login
+        </a>
+    </span>
+    <span *ngIf="!userAutnenticated">
+        <a mat-button [routerLink]="['auth/signUp']" routerLinkActive="colorLink">
+            sign up
+        </a>
+    </span>
+    <span *ngIf="userAutnenticated">
+        <button mat-button routerLinkActive="mat-primary" (click)="onLogout()">
+            logout
+        </button>
+    </span>
+</mat-toolbar>

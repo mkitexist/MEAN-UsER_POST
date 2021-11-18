@@ -1,0 +1,29 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="false" *ngIf="posts.length > 0 && !isLoading">
+    <mat-expansion-panel *ngFor="let item of posts"
+        style="border-bottom:1px solid  #ff8300;border-radius: 10px ; box-shadow:1px 1px 5px rgba(0,0,0,0.5); background-color:rgb(34, 33, 33) ;color:#ff8300">
+        <mat-expansion-panel-header>
+            <div>{{item?.title}}</div>
+            <h5 style="margin-left: 20px;font-family:Arial, Helvetica, sans-serif;letter-spacing: 1px;font-weight: 800;"
+                *ngIf="userAutnenticated && userId===item.creator">
+                MY POST
+            </h5>
+        </mat-expansion-panel-header>
+        <div class="post-image"><img [src]="item.imagePath" [alt]="item.title"></div>
+        <p>{{item?.content}}</p>
+        <!-- *ngIf="userAutnenticated && userId===item.creator" -->
+        <mat-action-row *ngIf="userAutnenticated && userId===item.creator">
+            <a mat-raised-button color="primary" [routerLink]="['/edit',item.id]">EDIT</a>
+            <button mat-raised-button color="warn" (click)="deletingPost(item.id)">DELTE</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalPosts" [pageSize]="postPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChanged($event)" *ngIf="posts.length > 0 "
+    style="background-color: black;color:grey;border-radius: 5px;"></mat-paginator>
+
+<p class=" text-display" *ngIf="posts.length <= 0 && !isLoading">no content</p>
+<footer>
+    <img style="height:100%;width:100%" src="../../../assets/images/pexels-tatiana-fet-1105766.jpg" alt="">
+</footer>
+<!-- hideToggle -->
