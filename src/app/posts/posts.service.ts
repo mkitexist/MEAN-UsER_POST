@@ -5,7 +5,10 @@ import { Post } from './post.model';
 import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-const BACKEND_URL = "https://meaan-app.herokuapp.com/api/posts";
+// const BACKEND_URL = environment.apiUrl + "posts";
+// const BACKEND_URL = "https://meaan-app.herokuapp.com/api/posts";
+const BACKEND_URL = "https://mean-appuserpost.herokuapp.com/api/posts";
+
 
 @Injectable({
   providedIn: 'root'
